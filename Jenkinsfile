@@ -33,8 +33,9 @@ pipeline {
             }
             steps {
                 // spusti appku na pozadí
-                bat "start /b java -jar ${APP_JAR} > app.log 2>&1"
-                bat "type app.log"
+//                 bat "start /b java -jar ${APP_JAR} > app.log 2>&1"
+//                 bat "type app.log"
+        bat 'java -jar target\\mock-api-build.jar'
                 echo "Spring Boot app started."
             }
         }
