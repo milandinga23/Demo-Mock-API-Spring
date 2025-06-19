@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/milandinga23/Demo-Mock-API-Spring', branch: 'main'
+                git url: 'https://github.com/milandinga23/Demo-Mock-API-Spring', branch: 'master'
             }
         }
 
