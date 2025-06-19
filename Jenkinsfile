@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    parameters {
-        choice(name: 'ACTION', choices: ['start', 'stop'], description: 'Start or stop the Spring Boot app')
-    }
-
     environment {
         APP_JAR = 'target\\mock-api-build.jar'
         JAVA_HOME = 'C:\\Program Files\\Amazon Corretto\\jdk17.0.13_11'
@@ -19,36 +15,16 @@ pipeline {
         }
 
         stage('Build') {
-            when {
-                expression { params.ACTION == 'start' }
-            }
             steps {
                 bat 'mvn clean package -DskipTests'
             }
         }
 
         stage('Start App') {
-            when {
-                expression { params.ACTION == 'start' }
-            }
             steps {
-                // spusti appku na pozadí
-                bat "start /b java -jar ${APP_JAR} > app.log 2>&1"
-                bat "type app.log"
-                powershell 'Start-Sleep -Seconds 10'
-//         bat 'java -jar target\\mock-api-build.jar'
+                // spusti appku na popredí
+                bat "java -jar ${APP_JAR}"
                 echo "Spring Boot app started."
-            }
-        }
-
-        stage('Stop App') {
-            when {
-                expression { params.ACTION == 'stop' }
-            }
-            steps {
-                // ukonci vsetky java procesy
-                bat 'taskkill /F /IM java.exe'
-                echo "Spring Boot app stopped."
             }
         }
     }
