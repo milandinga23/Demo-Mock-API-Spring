@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        APP_JAR = 'mock-api-build.jar'
+        APP_JAR = 'target\\mock-api-build.jar'
         JAVA_HOME = 'C:\\Program Files\\Amazon Corretto\\jdk17.0.13_11'
         PATH = "${env.JAVA_HOME}\\bin;${env.PATH}"
     }
