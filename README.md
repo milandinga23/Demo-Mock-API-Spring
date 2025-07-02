@@ -1,0 +1,1 @@
+This is a mock REST API built using Spring Boot, intended for use in integration testing, or API verification. It provides sample endpoints with hardcoded or dummy data to simulate real backend behavior.
